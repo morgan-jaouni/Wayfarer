@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <nav class="auth">
+      <a href="{% url 'login' %}" class='btn'>Login</a>
+      <a href="{% url 'signup' %}" class='btn'>Sign Up</a>
+    </nav>
+    <h1>Wayfooooooo</h1>
+    <main class="container">
+      {% block content %}
+      {% endblock %}
+
+      <footer>
+
+      </footer>
+    </main>
+  </body>
+</html>
