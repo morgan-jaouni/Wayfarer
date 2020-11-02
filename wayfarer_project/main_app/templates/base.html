@@ -10,8 +10,13 @@
   </head>
   <body>
     <nav class="auth">
-      <a href="{% url 'login' %}" class='btn'>Login</a>
-      <a href="{% url 'signup' %}" class='btn'>Sign Up</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' user.id %}" class='btn'>profile</a>
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}" class='btn'>Login</a>
+        <a href="{% url 'signup' %}" class='btn'>Sign Up</a>
+      {% endif %}
     </nav>
     <h1>Wayfooooooo</h1>
     <main class="container">
