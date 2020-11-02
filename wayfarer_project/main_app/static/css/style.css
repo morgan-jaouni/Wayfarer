@@ -1,0 +1,21 @@
+body {
+  background: lightgray;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  max-width: 100vw;
+}
+
+.auth {
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+}

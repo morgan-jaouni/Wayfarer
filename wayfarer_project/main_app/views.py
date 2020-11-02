@@ -33,7 +33,7 @@ def create_profile(req, user_id):
             new_form.user_id = user_id
             new_form.save()
 
-        return redirect(f'profile/{user_id}')
+        return redirect('profile', user_id=user_id)
     else:
         error_message = 'Invalid Sign Up - Try Again'
         form = ProfileForm()
@@ -61,3 +61,7 @@ def edit_profile(request, user_id):
         form= ProfileForm(instance= profile)
         context = {'form':form, 'profile':profile}
         return render(request, 'profile/edit.html', context)
+      
+def profile_home(req):
+    current_user = req.user
+    return redirect('profile', user_id=current_user.id)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,20 +7,25 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    {% comment %} Skeleton CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+    
+    {% comment %} Main CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
   </head>
   <body>
     <nav class="auth">
       <a href="{% url 'index' %}">Home</a>
       {% if user.is_authenticated %}
-        <a href="{% url 'profile' user.id %}" class='btn'>profile</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' user.id %}" class='btn'>Profile</a>
+        <a href="{% url 'logout' %}" class="btn">Logout</a>
       {% else %}
         <a href="{% url 'login' %}" class='btn'>Login</a>
         <a href="{% url 'signup' %}" class='btn'>Sign Up</a>
       {% endif %}
     </nav>
-    <h1>Wayfooooooo</h1>
     <main class="container">
       {% block content %}
       {% endblock %}
