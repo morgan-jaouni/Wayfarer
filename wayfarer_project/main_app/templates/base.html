@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +7,10 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    {% comment %} Skeleton CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
+    
   </head>
   <body>
     <nav class="auth">

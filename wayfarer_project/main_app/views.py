@@ -33,7 +33,7 @@ def create_profile(req, user_id):
             new_form.user_id = user_id
             new_form.save()
 
-        return redirect(f'profile/{user_id}')
+        return redirect('profile', user_id=user_id)
     else:
         error_message = 'Invalid Sign Up - Try Again'
         form = ProfileForm()
