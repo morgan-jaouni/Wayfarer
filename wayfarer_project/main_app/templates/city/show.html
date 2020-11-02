@@ -3,9 +3,10 @@
 {% block content %}
   <h1>{{ city.name }}</h1>
   <img src="{{ city.image }}" alt="{{city.name}}">
-  {% comment %} <h3>{{ travelpost.city }}</h3>
-  <h4>{{ travelpost.author }}</h4>
-  <h5>{{ travelpost.date }}</h5>
-  <p>{{ travelpost.likes }}</p>
-  <p>{{ travelpost.body }}</p> {% endcomment %}
+  {% for post in travelposts %}
+  <a href="{% url 'show' post.id %}">
+  <h3>{{ post.title }}</h3>
+  <h5>{{ post.date }}</h5>
+  </a>
+  {% endfor %}
 {% endblock %}

@@ -81,7 +81,9 @@ def show_travelpost(request, travelpost_id):
 
 def show_city(request, city_id):
     city = City.objects.get(id=city_id)
+    travelposts = TravelPost.objects.filter(city_id=city_id)
     context = {
         'city': city,
+        'travelposts': travelposts,
     }
     return render(request, 'city/show.html', context)

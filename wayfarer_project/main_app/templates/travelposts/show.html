@@ -3,7 +3,7 @@
 {% block content %}
   <h1>{{ travelpost.title }}</h1>
   <a href="{% url 'show_city' travelpost.city_id %}"><h3>{{ travelpost.city }}</h3></a>
-  <h4>{{ travelpost.author }}</h4>
+  <a href="{% url 'profile' travelpost.author.user_id %}"><h4>{{ travelpost.author }}</h4></a>
   <h5>{{ travelpost.date }}</h5>
   <img src="{{ travelpost.image }}" alt="">
   <p>{{ travelpost.likes }}</p>
