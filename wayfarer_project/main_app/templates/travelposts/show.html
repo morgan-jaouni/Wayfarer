@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ travelpost.title }}</h1>
+  <h3>{{ travelpost.city }}</h3>
+  <h4>{{ travelpost.author }}</h4>
+  <h5>{{ travelpost.date }}</h5>
+  <img src="{{ travelpost.image }}" alt="">
+  <p>{{ travelpost.likes }}</p>
+  <p>{{ travelpost.body }}</p>
+{% endblock %}
