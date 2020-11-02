@@ -25,7 +25,7 @@ class TravelPost(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
     body = models.TextField()
     title = models.CharField(max_length=200)
     image = models.URLField(max_length=200)
