@@ -10,4 +10,14 @@
 <h2>{{profile.join_date}}</h2>
 
 <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+
+<ul>
+  {% for post in travelposts %}
+  {% comment %} {% if post %} {% endcomment %}
+  <a href="{% url 'show' post.id %}" class="btn">{{ post.title }}</a>
+  <hr />
+  {% comment %} {% endif %} {% endcomment %}
+  {% endfor %}
+</ul>
+
 {% endblock %}
