@@ -45,3 +45,7 @@ def profile(req, user_id):
 
     context = {'profile': profile, 'user_id': user_id}
     return render(req, 'profile.html', context)
+
+def profile_home(req):
+    current_user = req.user
+    return redirect('profile', user_id=current_user.id)
