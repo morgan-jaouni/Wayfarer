@@ -61,7 +61,7 @@ def edit_profile(request, user_id):
         form= ProfileForm(instance= profile)
         context = {'form':form, 'profile':profile}
         return render(request, 'profile/edit.html', context)
-      
+
 def profile_home(req):
     current_user = req.user
     return redirect('profile', user_id=current_user.id)
