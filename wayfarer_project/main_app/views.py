@@ -1,3 +1,4 @@
+from main_app.models import Profile
 from main_app.forms import ProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -38,3 +39,9 @@ def create_profile(req, user_id):
         form = ProfileForm()
         context = {'form': form, 'error_message': error_message}
         return render(req, 'registration/profiles.html', context)
+
+def profile(req, user_id):
+    profile = Profile.objects.get(user_id=user_id)
+
+    context = {'profile': profile, 'user_id': user_id}
+    return render(req, 'profile.html', context)

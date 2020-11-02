@@ -12,6 +12,8 @@
     <nav class="auth">
       <a href="{% url 'login' %}" class='btn'>Login</a>
       <a href="{% url 'signup' %}" class='btn'>Sign Up</a>
+      <a href="{% url 'profile' user.id %}" class='btn'>profile</a>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
     </nav>
     <h1>Wayfooooooo</h1>
     <main class="container">
