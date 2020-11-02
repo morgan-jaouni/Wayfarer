@@ -45,3 +45,19 @@ def profile(req, user_id):
 
     context = {'profile': profile, 'user_id': user_id}
     return render(req, 'profile.html', context)
+
+
+@login_required
+def edit_profile(request, user_id):
+    profile = Profile.objects.get(user_id=user_id)
+
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance = profile)
+        if profile_form.is_valid():
+            updated_profile=profile_form.save()
+            return redirect('profile', updated_profile.user_id)
+
+    else:
+        form= ProfileForm(instance= profile)
+        context = {'form':form, 'profile':profile}
+        return render(request, 'profile/edit.html', context)

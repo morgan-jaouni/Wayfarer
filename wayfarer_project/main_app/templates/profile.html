@@ -9,4 +9,5 @@
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
 
+<a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
 {% endblock %}
