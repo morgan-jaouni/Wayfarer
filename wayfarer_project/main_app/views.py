@@ -1,4 +1,4 @@
-from main_app.models import Profile
+from main_app.models import Profile, TravelPost
 from main_app.forms import ProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -23,10 +23,10 @@ def signup(request):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
-def create_profile(req, user_id):
+def create_profile(request, user_id):
     error_message = ''
-    if req.method == 'POST':
-        form = ProfileForm(req.POST)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
 
         if form.is_valid():
             new_form = form.save(commit=False)
@@ -38,13 +38,17 @@ def create_profile(req, user_id):
         error_message = 'Invalid Sign Up - Try Again'
         form = ProfileForm()
         context = {'form': form, 'error_message': error_message}
-        return render(req, 'registration/profiles.html', context)
+        return render(request, 'registration/profiles.html', context)
 
-def profile(req, user_id):
+def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
-
-    context = {'profile': profile, 'user_id': user_id}
-    return render(req, 'profile.html', context)
+    travelposts = TravelPost.objects.filter(author_id=profile.id)
+    context = {
+        'profile': profile, 
+        'user_id': user_id,
+        'travelposts' : travelposts
+        }
+    return render(request, 'profile.html', context)
 
 
 @login_required
@@ -62,6 +66,15 @@ def edit_profile(request, user_id):
         context = {'form':form, 'profile':profile}
         return render(request, 'profile/edit.html', context)
 
-def profile_home(req):
-    current_user = req.user
+def profile_home(request):
+    current_user = request.user
     return redirect('profile', user_id=current_user.id)
+
+def show_travelpost(request, travelpost_id):
+    travelpost = TravelPost.objects.get(id=travelpost_id)
+    context = {
+        'travelpost': travelpost,
+        'travelpost_id': travelpost_id
+    }
+    return render(request, 'travelposts/show.html', context)
+
