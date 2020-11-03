@@ -17,10 +17,7 @@ urlpatterns = [
 
   # ------------------------------------- PROFILE ROUTES
   path('profile/<int:user_id>/edit/', views.edit_profile, name='edit_profile'),
-
-  path('accounts/profile/', views.profile_home, name='profile_home')
-]
-=======
+  path('accounts/profile/', views.profile_home, name='profile_home'),
   path('accounts/profile/', views.profile_home, name='profile_home'),
 
   # ------------------------------------- POST ROUTES
