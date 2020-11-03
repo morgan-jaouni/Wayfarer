@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+# error handling issues
+# from django.conf import settings
+# from django.conf.urls.static import static
 
 urlpatterns = [
   # ------------------------------------- STATIC
@@ -14,5 +17,11 @@ urlpatterns = [
   # ------------------------------------- PROFILE ROUTES
   path('profile/<int:user_id>/edit/', views.edit_profile, name='edit_profile'),
   path('accounts/profile/', views.profile_home, name='profile_home'),
-  path('profiles/home/travelpost/<int:travelpost_id>/', views.show_travelpost, name='show'),
-]
+
+    # ------------------------------------- POST ROUTES
+  path('travelpost/<int:travelpost_id>/', views.show_travelpost, name='show'),
+] 
+
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# handler404 = views.handler404
+# handler500 = views.handler500

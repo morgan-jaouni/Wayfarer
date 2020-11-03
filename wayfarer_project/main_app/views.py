@@ -1,14 +1,18 @@
 from main_app.models import Profile, TravelPost
 from main_app.forms import ProfileForm
 from django.shortcuts import render, redirect
+from django.template import RequestContext
+
+# --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+# --------------------------------------- INDEX
 def index(request):
     return render(request, 'index.html')
 
+# --------------------------------------- AUTH VIEWS
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -77,4 +81,10 @@ def show_travelpost(request, travelpost_id):
         'travelpost_id': travelpost_id
     }
     return render(request, 'travelposts/show.html', context)
+
+# --------------------------------------- ERROR HANDLING
+# def handler404(request, exception):
+#     return render(request, '404.html', status=404)
+# def handler500(request):
+#     return render(request, '500.html', status=500)
 
