@@ -85,6 +85,7 @@ def show_travelpost(request, travelpost_id):
     }
     return render(request, 'travelposts/show.html', context)
 
+@login_required
 def edit_travelpost(request, travelpost_id):
   error_message = ''
   travelpost = TravelPost.objects.get(id=travelpost_id)
@@ -102,7 +103,7 @@ def edit_travelpost(request, travelpost_id):
     context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
     return render(request, 'travelposts/edit.html', context)
 
-
+@login_required
 def new_post(request, city_id):
     error_message = ''
     if request.method == 'POST':
@@ -124,6 +125,11 @@ def new_post(request, city_id):
         context = {'form': form, 'error_message': error_message, 'city_id': city_id}
         return render(request, 'travelposts/new.html', context)
 
+
+@login_required
+def delete_post(request, travelpost_id):
+    TravelPost.objects.get(id=travelpost_id).delete()
+    return redirect('profile_home')
 # --------------------------------------- ERROR HANDLING
 # def handler404(request, exception):
 #     return render(request, '404.html', status=404)
