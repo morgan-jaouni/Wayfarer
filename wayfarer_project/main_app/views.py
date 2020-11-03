@@ -28,6 +28,7 @@ def signup(request):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
+# --------------------------------------- PROFILE
 def create_profile(request, user_id):
     error_message = ''
     if request.method == 'POST':
@@ -75,6 +76,7 @@ def profile_home(request):
     current_user = request.user
     return redirect('profile', user_id=current_user.id)
 
+# --------------------------------------- POSTS
 def show_travelpost(request, travelpost_id):
     travelpost = TravelPost.objects.get(id=travelpost_id)
     context = {
@@ -83,22 +85,23 @@ def show_travelpost(request, travelpost_id):
     }
     return render(request, 'travelposts/show.html', context)
 
+def edit_travelpost(request, travelpost_id):
+  error_message = ''
+  travelpost = TravelPost.objects.get(id=travelpost_id)
+  if request.method == 'POST':
+    form = PostForm(request.POST, instance=travelpost)
 
-# --------------------------------------- ERROR HANDLING
-# def handler404(request, exception):
-#     return render(request, '404.html', status=404)
-# def handler500(request):
-#     return render(request, '500.html', status=500)
+    if form.is_valid():
+      edit_form = form.save()
+      return redirect('show', travelpost_id)
 
 
-def show_city(request, city_id):
-    city = City.objects.get(id=city_id)
-    travelposts = TravelPost.objects.filter(city_id=city_id)
-    context = {
-        'city': city,
-        'travelposts': travelposts,
-    }
-    return render(request, 'city/show.html', context)
+  else:
+    error_message = 'Invalid Post - Try Again'
+    form = PostForm(instance=travelpost)
+    context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
+    return render(request, 'travelposts/edit.html', context)
+
 
 def new_post(request, city_id):
     error_message = ''
@@ -120,4 +123,22 @@ def new_post(request, city_id):
         form = PostForm()
         context = {'form': form, 'error_message': error_message, 'city_id': city_id}
         return render(request, 'travelposts/new.html', context)
+
+# --------------------------------------- ERROR HANDLING
+# def handler404(request, exception):
+#     return render(request, '404.html', status=404)
+# def handler500(request):
+#     return render(request, '500.html', status=500)
+
+# --------------------------------------- CITIES
+
+def show_city(request, city_id):
+    city = City.objects.get(id=city_id)
+    travelposts = TravelPost.objects.filter(city_id=city_id)
+    context = {
+        'city': city,
+        'travelposts': travelposts,
+    }
+    return render(request, 'city/show.html', context)
+
 

@@ -22,6 +22,7 @@ urlpatterns = [
   # ------------------------------------- POST ROUTES
   path('travelpost/<int:travelpost_id>/', views.show_travelpost, name='show'),
   path('travelpost/<int:city_id>/new/', views.new_post, name='new_post'), 
+  path('travelpost/<int:travelpost_id>/edit/', views.edit_travelpost, name='edit_travelpost'), 
 
   # ------------------------------------- CITY ROUTES
   path('cities/<int:city_id>/', views.show_city, name='show_city'),

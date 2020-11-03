@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Edit Post</h1>
+
+  {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+
+  <form action="{% url 'edit_travelpost' travelpost_id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button" value="Submit">
+  </form>
+{% endblock %}
