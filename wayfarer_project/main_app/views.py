@@ -2,14 +2,18 @@ from django.http import request
 from main_app.models import City, Profile, TravelPost
 from main_app.forms import PostForm, ProfileForm
 from django.shortcuts import render, redirect
+from django.template import RequestContext
+
+# --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+# --------------------------------------- INDEX
 def index(request):
     return render(request, 'index.html')
 
+# --------------------------------------- AUTH VIEWS
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -79,6 +83,14 @@ def show_travelpost(request, travelpost_id):
     }
     return render(request, 'travelposts/show.html', context)
 
+
+# --------------------------------------- ERROR HANDLING
+# def handler404(request, exception):
+#     return render(request, '404.html', status=404)
+# def handler500(request):
+#     return render(request, '500.html', status=500)
+
+
 def show_city(request, city_id):
     city = City.objects.get(id=city_id)
     travelposts = TravelPost.objects.filter(city_id=city_id)
@@ -108,3 +120,4 @@ def new_post(request, city_id):
         form = PostForm()
         context = {'form': form, 'error_message': error_message, 'city_id': city_id}
         return render(request, 'travelposts/new.html', context)
+
