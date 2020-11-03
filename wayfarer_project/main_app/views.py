@@ -87,21 +87,21 @@ def show_travelpost(request, travelpost_id):
 
 @login_required
 def edit_travelpost(request, travelpost_id):
-  error_message = ''
-  travelpost = TravelPost.objects.get(id=travelpost_id)
-  if request.method == 'POST':
-    form = PostForm(request.POST, instance=travelpost)
+    error_message = ''
+    travelpost = TravelPost.objects.get(id=travelpost_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=travelpost)
 
     if form.is_valid():
-      edit_form = form.save()
-      return redirect('show', travelpost_id)
+        edit_form = form.save()
+        return redirect('show', travelpost_id)
 
 
-  else:
-    error_message = 'Invalid Post - Try Again'
-    form = PostForm(instance=travelpost)
-    context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
-    return render(request, 'travelposts/edit.html', context)
+    else:
+        error_message = 'Invalid Post - Try Again'
+        form = PostForm(instance=travelpost)
+        context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
+        return render(request, 'travelposts/edit.html', context)
 
 @login_required
 def new_post(request, city_id):
