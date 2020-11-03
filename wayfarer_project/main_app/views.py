@@ -46,6 +46,7 @@ def create_profile(request, user_id):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/profiles.html', context)
 
+@login_required
 def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
     travelposts = TravelPost.objects.filter(author_id=profile.id)
@@ -77,7 +78,7 @@ def profile_home(request):
     return redirect('profile', user_id=current_user.id)
 
 # --------------------------------------- POSTS
-def show_travelpost(request, travelpost_id):
+def travelpost_show(request, travelpost_id):
     travelpost = TravelPost.objects.get(id=travelpost_id)
     context = {
         'travelpost': travelpost,
@@ -86,15 +87,14 @@ def show_travelpost(request, travelpost_id):
     return render(request, 'travelposts/show.html', context)
 
 @login_required
-def edit_travelpost(request, travelpost_id):
+def travelpost_edit(request, travelpost_id):
     error_message = ''
     travelpost = TravelPost.objects.get(id=travelpost_id)
     if request.method == 'POST':
         form = PostForm(request.POST, instance=travelpost)
-
-    if form.is_valid():
-        edit_form = form.save()
-        return redirect('show', travelpost_id)
+        if form.is_valid():
+            edit_form = form.save()
+            return redirect('travelpost_show', travelpost_id)
 
 
     else:
@@ -104,7 +104,7 @@ def edit_travelpost(request, travelpost_id):
         return render(request, 'travelposts/edit.html', context)
 
 @login_required
-def new_post(request, city_id):
+def travelpost_new(request, city_id):
     error_message = ''
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -127,7 +127,7 @@ def new_post(request, city_id):
 
 
 @login_required
-def delete_post(request, travelpost_id):
+def travelpost_delete(request, travelpost_id):
     TravelPost.objects.get(id=travelpost_id).delete()
     return redirect('profile_home')
 # --------------------------------------- ERROR HANDLING
