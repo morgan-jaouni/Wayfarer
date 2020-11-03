@@ -1,5 +1,6 @@
-from main_app.models import Profile, TravelPost
-from main_app.forms import ProfileForm
+from django.http import request
+from main_app.models import City, Profile, TravelPost
+from main_app.forms import PostForm, ProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -65,7 +66,7 @@ def edit_profile(request, user_id):
         form= ProfileForm(instance= profile)
         context = {'form':form, 'profile':profile}
         return render(request, 'profile/edit.html', context)
-      
+
 def profile_home(request):
     current_user = request.user
     return redirect('profile', user_id=current_user.id)
@@ -78,3 +79,32 @@ def show_travelpost(request, travelpost_id):
     }
     return render(request, 'travelposts/show.html', context)
 
+def show_city(request, city_id):
+    city = City.objects.get(id=city_id)
+    travelposts = TravelPost.objects.filter(city_id=city_id)
+    context = {
+        'city': city,
+        'travelposts': travelposts,
+    }
+    return render(request, 'city/show.html', context)
+
+def new_post(request, city_id):
+    error_message = ''
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        current_user = request.user
+        profile = Profile.objects.get(user_id=current_user.id)
+
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.author_id = profile.id
+            new_form.city_id = city_id
+            new_form.save()
+
+        return redirect('show_city', city_id)
+
+    else:
+        error_message = 'Invalid Post - Try Again'
+        form = PostForm()
+        context = {'form': form, 'error_message': error_message, 'city_id': city_id}
+        return render(request, 'travelposts/new.html', context)
