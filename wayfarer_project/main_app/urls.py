@@ -1,3 +1,4 @@
+from collections import namedtuple
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -18,10 +19,14 @@ urlpatterns = [
   path('profile/<int:user_id>/edit/', views.edit_profile, name='edit_profile'),
   path('accounts/profile/', views.profile_home, name='profile_home'),
 
-    # ------------------------------------- POST ROUTES
+  # ------------------------------------- POST ROUTES
   path('travelpost/<int:travelpost_id>/', views.show_travelpost, name='show'),
-] 
+  path('travelpost/<int:city_id>/new/', views.new_post, name='new_post'), 
 
+  # ------------------------------------- CITY ROUTES
+  path('cities/<int:city_id>/', views.show_city, name='show_city'),
+
+]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # handler404 = views.handler404
 # handler500 = views.handler500
