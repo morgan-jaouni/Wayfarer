@@ -20,11 +20,11 @@ urlpatterns = [
   path('accounts/profile/', views.profile_home, name='profile_home'),
   path('accounts/profile/', views.profile_home, name='profile_home'),
 
-  # ------------------------------------- POST ROUTES
-  path('travelpost/<int:travelpost_id>/', views.show_travelpost, name='show'),
-  path('travelpost/<int:city_id>/new/', views.new_post, name='new_post'), 
-  path('travelpost/<int:travelpost_id>/edit/', views.edit_travelpost, name='edit_travelpost'), 
-  path('travelpost/<int:travelpost_id>/delete/', views.delete_post, name='delete_post'),
+  # ------------------------------------- TRAVELPOST ROUTES
+  path('travelpost/<int:travelpost_id>/', views.travelpost_show, name='travelpost_show'),
+  path('travelpost/<int:city_id>/new/', views.travelpost_new, name='travelpost_new'), 
+  path('travelpost/<int:travelpost_id>/edit/', views.travelpost_edit, name='travelpost_edit'), 
+  path('travelpost/<int:travelpost_id>/delete/', views.travelpost_delete, name='travelpost_delete'),
   
 
   # ------------------------------------- CITY ROUTES
@@ -33,4 +33,3 @@ urlpatterns = [
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # handler404 = views.handler404
 # handler500 = views.handler500
-

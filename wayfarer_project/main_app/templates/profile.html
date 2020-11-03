@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+  <h1>{{profile.name}}</h1>
 
 <h1>{{profile.name}}</h1>
 <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
@@ -12,15 +13,15 @@
 
 {% if user.id == profile.user.id %}
 
-{% endif %}
+  {% if user.id == profile.user.id %}
+  <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+  {% endif %}
 
-<ul>
-  {% for post in travelposts %}
-  {% comment %} {% if post %} {% endcomment %}
-  <a href="{% url 'show' post.id %}" class="btn">{{ post.title }}</a>
-  <hr />
-  {% comment %} {% endif %} {% endcomment %}
-  {% endfor %}
-</ul>
+  <ul>
+    {% for post in travelposts %}
+    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
+    <hr />
+    {% endfor %}
+  </ul>
 
 {% endblock %}
