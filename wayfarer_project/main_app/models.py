@@ -23,7 +23,7 @@ class City(models.Model):
 class TravelPost(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)
     likes = models.IntegerField()
     body = models.TextField()
     title = models.CharField(max_length=200)
