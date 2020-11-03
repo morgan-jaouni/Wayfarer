@@ -7,7 +7,22 @@
   {% for post in travelposts %}
   <a href="{% url 'travelpost_show' post.id %}">
   <h3>{{ post.title }}</h3>
-  <h5>{{ post.date }}</h5>
   </a>
+  <h5>{{ post.date }}</h5>
+  <p class="post_body">
+    {{ post.body|truncatechars_html:1000 }}
+    <a href="{% url 'travelpost_show' post.id %}" class="view_more" display="">View More</a>
+  </p>
   {% endfor %}
+
+  <script>
+    var pEl = document.querySelectorAll('.post_body');
+    var moreEl = document.getElementsByClassName('view_more');
+    for (let i = 0; i < pEl.length; i++) {
+      if (pEl[i].innerText.length < 1000) {
+        moreEl[i].style.display = "none";
+      }
+    }
+  </script>
+
 {% endblock %}

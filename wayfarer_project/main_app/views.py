@@ -82,7 +82,7 @@ def travelpost_show(request, travelpost_id):
     travelpost = TravelPost.objects.get(id=travelpost_id)
     context = {
         'travelpost': travelpost,
-        'travelpost_id': travelpost_id
+        'travelpost_id': travelpost_id,
     }
     return render(request, 'travelposts/show.html', context)
 
