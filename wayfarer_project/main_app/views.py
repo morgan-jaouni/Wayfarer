@@ -1,14 +1,19 @@
-from main_app.models import Profile
-from main_app.forms import ProfileForm
+from django.http import request
+from main_app.models import City, Profile, TravelPost
+from main_app.forms import PostForm, ProfileForm
 from django.shortcuts import render, redirect
+from django.template import RequestContext
+
+# --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+# --------------------------------------- INDEX
 def index(request):
     return render(request, 'index.html')
 
+# --------------------------------------- AUTH VIEWS
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -23,10 +28,11 @@ def signup(request):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
-def create_profile(req, user_id):
+# --------------------------------------- PROFILE
+def create_profile(request, user_id):
     error_message = ''
-    if req.method == 'POST':
-        form = ProfileForm(req.POST)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
 
         if form.is_valid():
             new_form = form.save(commit=False)
@@ -38,13 +44,17 @@ def create_profile(req, user_id):
         error_message = 'Invalid Sign Up - Try Again'
         form = ProfileForm()
         context = {'form': form, 'error_message': error_message}
-        return render(req, 'registration/profiles.html', context)
+        return render(request, 'registration/profiles.html', context)
 
-def profile(req, user_id):
+def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
-
-    context = {'profile': profile, 'user_id': user_id}
-    return render(req, 'profile.html', context)
+    travelposts = TravelPost.objects.filter(author_id=profile.id)
+    context = {
+        'profile': profile, 
+        'user_id': user_id,
+        'travelposts' : travelposts
+        }
+    return render(request, 'profile.html', context)
 
 
 @login_required
@@ -61,7 +71,74 @@ def edit_profile(request, user_id):
         form= ProfileForm(instance= profile)
         context = {'form':form, 'profile':profile}
         return render(request, 'profile/edit.html', context)
-      
-def profile_home(req):
-    current_user = req.user
+
+def profile_home(request):
+    current_user = request.user
     return redirect('profile', user_id=current_user.id)
+
+# --------------------------------------- POSTS
+def show_travelpost(request, travelpost_id):
+    travelpost = TravelPost.objects.get(id=travelpost_id)
+    context = {
+        'travelpost': travelpost,
+        'travelpost_id': travelpost_id
+    }
+    return render(request, 'travelposts/show.html', context)
+
+def edit_travelpost(request, travelpost_id):
+  error_message = ''
+  travelpost = TravelPost.objects.get(id=travelpost_id)
+  if request.method == 'POST':
+    form = PostForm(request.POST, instance=travelpost)
+
+    if form.is_valid():
+      edit_form = form.save()
+      return redirect('show', travelpost_id)
+
+
+  else:
+    error_message = 'Invalid Post - Try Again'
+    form = PostForm(instance=travelpost)
+    context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
+    return render(request, 'travelposts/edit.html', context)
+
+
+def new_post(request, city_id):
+    error_message = ''
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        current_user = request.user
+        profile = Profile.objects.get(user_id=current_user.id)
+
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.author_id = profile.id
+            new_form.city_id = city_id
+            new_form.save()
+
+        return redirect('show_city', city_id)
+
+    else:
+        error_message = 'Invalid Post - Try Again'
+        form = PostForm()
+        context = {'form': form, 'error_message': error_message, 'city_id': city_id}
+        return render(request, 'travelposts/new.html', context)
+
+# --------------------------------------- ERROR HANDLING
+# def handler404(request, exception):
+#     return render(request, '404.html', status=404)
+# def handler500(request):
+#     return render(request, '500.html', status=500)
+
+# --------------------------------------- CITIES
+
+def show_city(request, city_id):
+    city = City.objects.get(id=city_id)
+    travelposts = TravelPost.objects.filter(city_id=city_id)
+    context = {
+        'city': city,
+        'travelposts': travelposts,
+    }
+    return render(request, 'city/show.html', context)
+
+
