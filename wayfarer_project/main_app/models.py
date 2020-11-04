@@ -8,11 +8,14 @@ class Profile(models.Model):
     email = models.EmailField(("Email:"), max_length=254)
     city = models.CharField(max_length=100)
     age = models.DateField(format("Birth Date:"), auto_now=False, auto_now_add=False)
-    join_date = models.DateField(auto_now_add=True)
+    image = models.ImageField(null=True, blank=True, upload_to = '')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    join_date = models.DateField(auto_now_add=True)
+   
 
     def __str__(self):
         return self.name
+
 
 class City(models.Model):
     name = models.CharField(max_length=100)

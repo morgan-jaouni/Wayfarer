@@ -33,10 +33,11 @@ def create_profile(request, user_id):
     error_message = ''
     if request.method == 'POST':
         form = ProfileForm(request.POST)
-
+   
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.user_id = user_id
+            new_form.image = request.FILES['image']
             new_form.save()
 
         return redirect('profile', user_id=user_id)
@@ -50,11 +51,13 @@ def create_profile(request, user_id):
 def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
     travelposts = TravelPost.objects.filter(author_id=profile.id)
+    
     context = {
         'profile': profile, 
         'user_id': user_id,
-        'travelposts' : travelposts
+        'travelposts' : travelposts,
         }
+
     return render(request, 'profile.html', context)
 
 
@@ -65,6 +68,7 @@ def edit_profile(request, user_id):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance = profile)
         if profile_form.is_valid():
+            profile.image = request.FILES['image']
             updated_profile=profile_form.save()
             return redirect('profile', updated_profile.user_id)
 

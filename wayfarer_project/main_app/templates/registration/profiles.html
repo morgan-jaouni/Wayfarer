@@ -3,7 +3,7 @@
 {% block content %}
   <h1>Tell the world a little more about yourself</h1>
 
-  <form action="{% url 'create profile' user.id %}" method="POST">
+  <form enctype="multipart/form-data" action="{% url 'create profile' user.id %}" method="POST">
 
     {% csrf_token %}
   
