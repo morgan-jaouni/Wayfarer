@@ -7,7 +7,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(("Email:"), max_length=254)
     city = models.CharField(max_length=100)
-    age = models.DateField(format("Birth Date:"), auto_now=False, auto_now_add=False)
+    age = models.DateField(("Birth Date:"), auto_now=False, auto_now_add=False)
     join_date = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

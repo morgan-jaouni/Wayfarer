@@ -12,7 +12,7 @@ urlpatterns = [
   path('accounts/signup/', views.signup, name='signup'),
 
   # ------------------------------------- USERS ROUTES
-  path('accounts/<int:user_id>/profile/', views.create_profile, name='create profile'),
+  # path('accounts/<int:user_id>/profile/', views.create_profile, name='create profile'),
   path('profile/<int:user_id>/', views.profile, name='profile'),
 
   # ------------------------------------- PROFILE ROUTES

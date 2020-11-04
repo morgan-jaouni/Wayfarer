@@ -1,8 +1,9 @@
 from django.http import request
 from main_app.models import City, Profile, TravelPost
-from main_app.forms import PostForm, ProfileForm
+from main_app.forms import PostForm, ProfileForm, SignUpForm
 from django.shortcuts import render, redirect
 from django.template import RequestContext
+from django.contrib.auth import authenticate
 
 # --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login
@@ -17,35 +18,28 @@ def index(request):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
+        form = SignUpForm(request.POST)
+        sub_form = ProfileForm(request.POST)
+        if form.is_valid() & sub_form.is_valid():
             user = form.save()
+            new_form = sub_form.save(commit=False)
+            new_form.user_id = user.id
+            new_form.save()
             login(request, user)
-            return redirect('create profile', user_id=user.id)
+            return redirect('profile', user_id=user.id)
+        else:
+            error_message = 'Invalid Sign Up - Try Again'
+            form = SignUpForm()
+            sub_form = ProfileForm()
+            context = {'form': form, 'sub_form': sub_form, 'error_message': error_message}
+            return render(request, 'registration/signup.html', context)
     else:
-        error_message = 'Invalid Sign Up - Try Again'
-        form = UserCreationForm()
-        context = {'form': form, 'error_message': error_message}
+        form = SignUpForm()
+        sub_form = ProfileForm()
+        context = {'form': form, 'sub_form': sub_form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
 # --------------------------------------- PROFILE
-def create_profile(request, user_id):
-    error_message = ''
-    if request.method == 'POST':
-        form = ProfileForm(request.POST)
-
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user_id = user_id
-            new_form.save()
-
-        return redirect('profile', user_id=user_id)
-    else:
-        error_message = 'Invalid Sign Up - Try Again'
-        form = ProfileForm()
-        context = {'form': form, 'error_message': error_message}
-        return render(request, 'registration/profiles.html', context)
-
 @login_required
 def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
@@ -61,17 +55,20 @@ def profile(request, user_id):
 @login_required
 def edit_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
+    user = authenticate(id=user_id)
+    if user is not None:
+        if request.method == 'POST':
+            profile_form = ProfileForm(request.POST, instance = profile)
+            if profile_form.is_valid():
+                updated_profile=profile_form.save()
+                return redirect('profile', updated_profile.user_id)
 
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance = profile)
-        if profile_form.is_valid():
-            updated_profile=profile_form.save()
-            return redirect('profile', updated_profile.user_id)
-
+        else:
+            form= ProfileForm(instance= profile)
+            context = {'form':form, 'profile':profile}
+            return render(request, 'profile/edit.html', context)
     else:
-        form= ProfileForm(instance= profile)
-        context = {'form':form, 'profile':profile}
-        return render(request, 'profile/edit.html', context)
+        return redirect('index')
 
 def profile_home(request):
     current_user = request.user
@@ -90,18 +87,23 @@ def travelpost_show(request, travelpost_id):
 def travelpost_edit(request, travelpost_id):
     error_message = ''
     travelpost = TravelPost.objects.get(id=travelpost_id)
-    if request.method == 'POST':
-        form = PostForm(request.POST, instance=travelpost)
-        if form.is_valid():
-            edit_form = form.save()
-            return redirect('travelpost_show', travelpost_id)
+    user = authenticate(id=travelpost.author.user_id)
+    if user is not None:
+        if request.method == 'POST':
+            form = PostForm(request.POST, instance=travelpost)
+            if form.is_valid():
+                edit_form = form.save()
+                return redirect('travelpost_show', travelpost_id)
 
+
+        else:
+            error_message = 'Invalid Post - Try Again'
+            form = PostForm(instance=travelpost)
+            context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
+            return render(request, 'travelposts/edit.html', context)
 
     else:
-        error_message = 'Invalid Post - Try Again'
-        form = PostForm(instance=travelpost)
-        context = {'form': form, 'error_message': error_message, 'travelpost_id': travelpost_id}
-        return render(request, 'travelposts/edit.html', context)
+        return redirect('index')
 
 @login_required
 def travelpost_new(request, city_id):
@@ -128,8 +130,13 @@ def travelpost_new(request, city_id):
 
 @login_required
 def travelpost_delete(request, travelpost_id):
-    TravelPost.objects.get(id=travelpost_id).delete()
-    return redirect('profile_home')
+    travelpost = TravelPost.objects.get(id=travelpost_id)
+    user = authenticate(id=travelpost.author.user_id)
+    if user is not None:
+        TravelPost.objects.get(id=travelpost_id).delete()
+        return redirect('profile_home')
+    else:
+        return redirect('index')
 # --------------------------------------- ERROR HANDLING
 # def handler404(request, exception):
 #     return render(request, '404.html', status=404)
