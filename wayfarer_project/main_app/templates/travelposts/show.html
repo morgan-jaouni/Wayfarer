@@ -6,8 +6,6 @@
   <a href="{% url 'profile' travelpost.author.user_id %}"><h4>{{ travelpost.author }}</h4></a>
   
   <h5>{{ travelpost.date }}</h5>
-  <a class="button" href="{% url 'travelpost_edit' travelpost.id %}">Edit Post</a>
-  <a class="button" href="{% url 'travelpost_delete' travelpost.id %}">Delete Post</a>
   <hr />
   <img src="{{ travelpost.image }}" alt="">
   <p>{{ travelpost.likes }}</p>
