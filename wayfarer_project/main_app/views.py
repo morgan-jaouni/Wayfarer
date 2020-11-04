@@ -1,4 +1,4 @@
-from django.http import request
+from django.http import request, HttpResponse
 from main_app.models import City, Profile, TravelPost
 from main_app.forms import PostForm, ProfileForm
 from django.shortcuts import render, redirect
@@ -8,6 +8,9 @@ from django.template import RequestContext
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+
+# ----------------------------------------- EMAIL IMPORTS
+from django.core.mail import send_mail
 
 # --------------------------------------- INDEX
 def index(request):
@@ -21,7 +24,12 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            mail = send_mail('Welcome to Wayfarer',
+                'Thanks for signing up!',
+                'sei98.wayfarer.project@gmail.com',
+                ['hagefer293@x1post.com'])
             return redirect('create profile', user_id=user.id)
+    
     else:
         error_message = 'Invalid Sign Up - Try Again'
         form = UserCreationForm()
@@ -146,5 +154,4 @@ def show_city(request, city_id):
         'travelposts': travelposts,
     }
     return render(request, 'city/show.html', context)
-
 

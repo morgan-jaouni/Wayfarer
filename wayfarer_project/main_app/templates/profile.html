@@ -1,21 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1>{{profile.name}}</h1>
-
 <h1>{{profile.name}}</h1>
+{% if user.id == profile.user.id %}
 <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
-
+{% endif %}
 <hr />
 
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
-
-{% if user.id == profile.user.id %}
-
-  {% if user.id == profile.user.id %}
-  <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
-  {% endif %}
 
   <ul>
     {% for post in travelposts %}
