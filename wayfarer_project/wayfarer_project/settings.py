@@ -14,6 +14,7 @@ from pathlib import Path
 
 from django.shortcuts import redirect
 from django.urls.conf import path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -121,7 +122,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+
+LOGOUT_REDIRECT_URL = '/'
 
 
 LOGOUT_REDIRECT_URL = '/'
@@ -132,3 +137,8 @@ EMAIL_HOST_USER = 'sei98.wayfarer.project@gmail.com'
 EMAIL_HOST_PASSWORD = '123sei456'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/images/'
+# ]
+MEDIA_ROOT = os.path.join(BASE_DIR,'images')

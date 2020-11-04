@@ -9,6 +9,8 @@
   <img src="{{ travelpost.image }}" alt="">
   <p>{{ travelpost.likes }}</p>
   <p>{{ travelpost.body }}</p>
-  <a class="button" href="{% url 'travelpost_edit' travelpost.id %}">Edit Post</a>
-  <a class="button" href="{% url 'travelpost_delete' travelpost.id %}" onclick="return confirm('Are you sure you want to delete post?');">Delete Post</a>
+  {% if user.id == profile.user.id %}
+    <a class="button" href="{% url 'travelpost_edit' travelpost.id %}">Edit Post</a>
+    <a class="button" href="{% url 'travelpost_delete' travelpost.id %}" onclick="return confirm('Are you sure you want to delete post?');">Delete Post</a>
+  {% endif %}
 {% endblock %}
