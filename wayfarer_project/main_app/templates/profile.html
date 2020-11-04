@@ -6,9 +6,10 @@
   {% if user.id == profile.user.id %}
   <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
   {% endif %}
-
-<hr />
-
+  
+  <hr />
+  
+  <img class = "profile-pic" src="/images/{{profile.image}}">
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
 

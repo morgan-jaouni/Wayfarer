@@ -24,6 +24,7 @@ def signup(request):
             user = form.save()
             new_form = sub_form.save(commit=False)
             new_form.user_id = user.id
+            new_form.image = request.FILES['image']
             new_form.save()
             login(request, user)
             return redirect('profile', user_id=user.id)
@@ -44,29 +45,26 @@ def signup(request):
 def profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
     travelposts = TravelPost.objects.filter(author_id=profile.id)
+    
     context = {
         'profile': profile, 
         'user_id': user_id,
-        'travelposts' : travelposts
+        'travelposts' : travelposts,
         }
+
     return render(request, 'profile.html', context)
 
 
 @login_required
 def edit_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
-    user = authenticate(id=user_id)
-    if user is not None:
-        if request.method == 'POST':
-            profile_form = ProfileForm(request.POST, instance = profile)
-            if profile_form.is_valid():
-                updated_profile=profile_form.save()
-                return redirect('profile', updated_profile.user_id)
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance = profile)
+        if profile_form.is_valid():
+            profile.image = request.FILES['image']
+            updated_profile=profile_form.save()
+            return redirect('profile', updated_profile.user_id)
 
-        else:
-            form= ProfileForm(instance= profile)
-            context = {'form':form, 'profile':profile}
-            return render(request, 'profile/edit.html', context)
     else:
         return redirect('index')
 
