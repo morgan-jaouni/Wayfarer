@@ -1,6 +1,8 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import Profile, TravelPost
 from django.contrib.auth.models import User
+
 
 
 ## ---- via https://overiq.com/django-1-10/django-creating-users-using-usercreationform/
@@ -14,14 +16,14 @@ class SignUpForm(forms.Form):
         username = self.cleaned_data['username'].lower()
         r = User.objects.filter(username=username)
         if r.count():
-            raise  forms.ValidationError("Username already exists")
+            raise ValidationError("Username already exists")
         return username
 
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         r = User.objects.filter(email=email)
         if r.count():
-            raise  forms.ValidationError("Email already exists")
+            raise ValidationError("Email already exists")
         return email
 
     def clean_password2(self):
@@ -29,7 +31,7 @@ class SignUpForm(forms.Form):
         password2 = self.cleaned_data.get('password2')
 
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise ValidationError("Passwords don't match")
 
         return password2
 
@@ -50,5 +52,9 @@ class ProfileForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = TravelPost
+        fields = ("title", 'city', 'body', 'image')
+
+class CityPostForm(forms.ModelForm):
+    class Meta:
+        model = TravelPost
         fields = ("title", 'body', 'image')
-        

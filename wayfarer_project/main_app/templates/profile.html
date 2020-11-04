@@ -13,6 +13,7 @@
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
 
+
   <ul>
     {% for post in travelposts %}
     <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
