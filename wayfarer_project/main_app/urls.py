@@ -22,7 +22,8 @@ urlpatterns = [
 
   # ------------------------------------- TRAVELPOST ROUTES
   path('travelpost/<int:travelpost_id>/', views.travelpost_show, name='travelpost_show'),
-  path('travelpost/<int:city_id>/new/', views.travelpost_new, name='travelpost_new'), 
+  path('travelpost/new/', views.travelpost_new, name='travelpost_new'), 
+  path('travelpost/<int:city_id>/new/', views.travelpost_new, name='travelpost_new_w_city'), 
   path('travelpost/<int:travelpost_id>/edit/', views.travelpost_edit, name='travelpost_edit'), 
   path('travelpost/<int:travelpost_id>/delete/', views.travelpost_delete, name='travelpost_delete'),
   

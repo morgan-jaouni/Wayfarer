@@ -1,7 +1,9 @@
 from django.http import request
+from django.template import context
 from main_app.models import City, Profile, TravelPost
-from main_app.forms import PostForm, ProfileForm, SignUpForm
+from main_app.forms import CityPostForm, PostForm, ProfileForm, SignUpForm
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate
 
@@ -29,15 +31,14 @@ def signup(request):
             login(request, user)
             return redirect('profile', user_id=user.id)
         else:
-            error_message = 'Invalid Sign Up - Try Again'
-            form = SignUpForm()
+            error_message = form.non_field_errors
             sub_form = ProfileForm()
             context = {'form': form, 'sub_form': sub_form, 'error_message': error_message}
             return render(request, 'registration/signup.html', context)
     else:
         form = SignUpForm()
         sub_form = ProfileForm()
-        context = {'form': form, 'sub_form': sub_form, 'error_message': error_message}
+        context = {'form': form, 'sub_form': sub_form,}## 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
 # --------------------------------------- PROFILE
@@ -58,15 +59,22 @@ def profile(request, user_id):
 @login_required
 def edit_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
+    user = authenticate(id=profile.user_id)
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance = profile)
-        if profile_form.is_valid():
-            profile.image = request.FILES['image']
-            updated_profile=profile_form.save()
-            return redirect('profile', updated_profile.user_id)
-
+        if user is not None:
+            form = ProfileForm(request.POST, instance = profile)
+            if form.is_valid():
+                profile.image = request.FILES['image']
+                updated_profile=form.save()
+                return redirect('profile', updated_profile.user_id)
+        else:
+            return redirect('index')
     else:
-        return redirect('index')
+        form = ProfileForm(instance = profile)
+        context = {
+            'form': form,
+        }
+        return render(request, 'profile/edit.html', context)
 
 def profile_home(request):
     current_user = request.user
@@ -107,21 +115,26 @@ def travelpost_edit(request, travelpost_id):
 def travelpost_new(request, city_id):
     error_message = ''
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        if city_id:
+            form = CityPostForm(request.POST)
+        else:
+            form = PostForm(request.POST)
         current_user = request.user
         profile = Profile.objects.get(user_id=current_user.id)
 
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.author_id = profile.id
-            new_form.city_id = city_id
+            if city_id:
+                new_form.city_id = city_id
             new_form.save()
-
-        return redirect('show_city', city_id)
+            return redirect('show_city', new_form.city_id)
 
     else:
-        error_message = 'Invalid Post - Try Again'
-        form = PostForm()
+        if city_id:
+            form = CityPostForm()
+        else:
+            form = PostForm()
         context = {'form': form, 'error_message': error_message, 'city_id': city_id}
         return render(request, 'travelposts/new.html', context)
 
