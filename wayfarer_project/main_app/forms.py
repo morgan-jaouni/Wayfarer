@@ -47,6 +47,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ("name", "city", "age","image")
+
         
 
 class PostForm(forms.ModelForm):

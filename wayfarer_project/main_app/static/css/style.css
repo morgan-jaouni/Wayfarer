@@ -1,4 +1,3 @@
-
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 @font-face {
@@ -16,21 +15,51 @@
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  margin: 5px;
+  padding: 5px;
+  position: relative;
+}
+
+header img {
+  height: 80px;
+  margin-top: 50px;
+  margin-left: 30px;
 }
 
 body {
   font-family: 'Lato', Calibri, Arial, sans-serif;
   color: #2c2c2b;
-  background: #333;
   font-size: 0.9em;
   font-weight: 300;
-  background: lightslategrey;
+  background: #094275;
   display: flex;
   max-width: 100vw;
+  margin-top: 50px;
+  padding: 30px;
 }
 
+header {
+  background-image: url('https://i.picsum.photos/id/1056/3988/2720.jpg?hmac=qX6hO_75zxeYI7C-1TOspJ0_bRDbYInBwYeoy_z_h08');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: center;
+	box-shadow: 0 0 25px 0 black;
+	z-index: 1;
+}
+
+
 a {
-	color: #f0f0f0;
+	color: #DC7364;
 	text-decoration: none;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -39,7 +68,7 @@ a {
 	text-transform: uppercase;
   font-size: 80%;
   position: relative;
-  top: 15px;
+  top: 5px;
   left: 15px;
 }
 
@@ -47,14 +76,88 @@ a:hover {
   color: lightskyblue
 }
 
-.container {
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  padding: 10px;
+.auth-form {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  margin: 10px;
-  padding: 10px;
+.button, button, input[type="submit"], input[type="reset"], input[type="button"]{
+  background-color: rgba(17, 16, 16, 0.4);
+  color: #F0D5C0;
+  width: 120px;
+  
 }
+
+.navbar {
+	max-height: 60px;
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+	justify-content: flex-end;
+	padding-right: 40px;
+}
+
+.nav-button {
+  margin: 15px;
+	text-decoration: none;
+	float: right;
+}
+
+.logo {
+	max-width: 300px;
+	margin: 0 auto;
+}
+
+.icon {
+	max-width: 35px;
+	border-radius: 50px;
+	max-height: 35px;
+	margin: 0;
+	margin-left: 15px;
+}
+
+.profile-pic {
+  max-width: 300px;
+  max-height: 300px;
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 black;;
+}
+
+.container {
+	display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 10px;
+  padding: 5px;
+  max-width: 33%;
+	height: 100%;
+	margin: auto;
+}
+
+.form-fields {
+	/* background: orange;
+	border-radius: 50%; */
+}
+
+
+
+h1, h4 {
+	font-weight: bold;
+	color: #DC7364;
+	text-decoration: none;
+}
+
+p {
+	font-size: 16px;
+	font-weight: bold;
+	color: #F0D5C0;
+}
+
+/* ERROR MESSAGE */
+.red-text {
+	color: rgb(172, 16, 16);
+	text-decoration: none;
+}
+
