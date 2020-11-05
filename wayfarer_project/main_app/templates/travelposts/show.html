@@ -6,7 +6,8 @@
   <a href="{% url 'profile' travelpost.author.user_id %}"><h4>{{ travelpost.author }}</h4></a>
 
   
-  <h5>{{ travelpost.date }}</h5>
+
+  <h4>{{ travelpost.date }}</h4>
   <h3>Likes: {{ travelpost.likes }}
   {% if liked %}
     <a href="{% url 'like' travelpost.id %}"><i class="fas fa-heart"></i></a>
@@ -16,7 +17,7 @@
   </h3>
   <hr />
   <img src="{{ travelpost.image }}" alt="">
-  <p>{{ travelpost.likes }}</p>
+  <p>Likes: {{ travelpost.likes }}</p>
   <p>{{ travelpost.body }}</p>
   {% if user.id == travelpost.author.user_id %}
     <a class="button" href="{% url 'travelpost_edit' travelpost.id %}">Edit Post</a>

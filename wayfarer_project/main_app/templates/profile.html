@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h1>{{profile.name}}</h1>
-
+<div class="m-scene" id="main">
+  <div class="m-aside scene_element scene_element--fadein">
+    <h1>{{profile.name}}</h1>
+    {% if  profile.image %}
+    <img class = "profile-pic" src="/images/{{profile.image}}">
+    {% endif %}
+    <br/>
+    {% if user.id == profile.user.id %}
+    <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
+    <a href="{% url 'travelpost_new' %}" class="button">Add A Post</a>
+    {% endif %}
+{% comment %} 
   {% if user.id == profile.user.id %}
   <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
   <a href="{% url 'travelpost_new' 0 %}" class="btn">New Post</a>
@@ -13,7 +23,7 @@
   <img class = "profile-pic" src="/images/{{profile.image}}">
   {% endif %}
 <h2>{{profile.city}}</h2>
-<h2>{{profile.join_date}}</h2>
+<h2>{{profile.join_date}}</h2> {% endcomment %}
 
 
   {% comment %} <ul>
@@ -60,5 +70,19 @@
       <hr />
     {% endfor %}
   </ul> {% endcomment %}
+    <hr />
+    <br/>
+    <h4>From {{profile.city}}</h4>
+    <p>Joined on {{profile.join_date}}</p>
+    </div>
+    <div class="m-right-panel m-page scene_element scene_element--fadeinright">
 
+      <ul>
+        {% for post in travelposts %}
+        <a href="{% url 'travelpost_show' post.id %}" class="button">{{ post.title }}</a>
+        <hr />
+        {% endfor %}
+      </ul>
+    </div>
+    </div>
 {% endblock %}
