@@ -5,6 +5,7 @@
 
   {% if user.id == profile.user.id %}
   <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+  <a href="{% url 'travelpost_new' 0 %}" class="btn">New Post</a>
   {% endif %}
   
   <hr />
