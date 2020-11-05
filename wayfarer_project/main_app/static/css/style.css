@@ -146,6 +146,7 @@ a:hover {
 h1, h4 {
 	font-weight: bold;
 	color: #DC7364;
+	text-decoration: none;
 }
 
 p {
