@@ -8,8 +8,9 @@
   {% endif %}
   
   <hr />
-  
+  {% if  profile.image %}
   <img class = "profile-pic" src="/images/{{profile.image}}">
+  {% endif %}
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
 
