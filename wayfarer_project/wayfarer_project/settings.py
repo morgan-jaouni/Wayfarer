@@ -14,6 +14,7 @@ from pathlib import Path
 
 from django.shortcuts import redirect
 from django.urls.conf import path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'k%yliiddw#l=l3*64xio5k*$8_=m)wq&fl8*a5(nc4i7)g@cfu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -121,4 +122,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+
+LOGOUT_REDIRECT_URL = '/'
+
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/images/'
+# ]
+MEDIA_ROOT = os.path.join(BASE_DIR,'images')

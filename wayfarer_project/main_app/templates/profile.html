@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
+  <h1>{{profile.name}}</h1>
 
-<h1>{{profile.name}}</h1>
-
-<hr />
-
+  {% if user.id == profile.user.id %}
+  <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+  {% endif %}
+  
+  <hr />
+  {% if  profile.image %}
+  <img class = "profile-pic" src="/images/{{profile.image}}">
+  {% endif %}
 <h2>{{profile.city}}</h2>
 <h2>{{profile.join_date}}</h2>
+
+
+  <ul>
+    {% for post in travelposts %}
+    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
+    <hr />
+    {% endfor %}
+  </ul>
 
 {% endblock %}
