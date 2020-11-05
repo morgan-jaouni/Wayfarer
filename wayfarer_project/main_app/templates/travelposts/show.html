@@ -4,8 +4,17 @@
   <h1>{{ travelpost.title }}</h1>
   <a href="{% url 'show_city' travelpost.city_id %}"><h3>{{ travelpost.city }}</h3></a>
   <a href="{% url 'profile' travelpost.author.user_id %}"><h4>{{ travelpost.author }}</h4></a>
+
   
+
   <h4>{{ travelpost.date }}</h4>
+  <h3>Likes: {{ travelpost.likes }}
+  {% if liked %}
+    <a href="{% url 'like' travelpost.id %}"><i class="fas fa-heart"></i></a>
+  {% else %}
+    <a href="{% url 'like' travelpost.id %}"><i class="far fa-heart"></i></a>
+  {% endif %}
+  </h3>
   <hr />
   <img src="{{ travelpost.image }}" alt="">
   <p>Likes: {{ travelpost.likes }}</p>
@@ -15,3 +24,5 @@
     <a class="button" href="{% url 'travelpost_delete' travelpost.id %}" onclick="return confirm('Are you sure you want to delete post?');">Delete Post</a>
   {% endif %}
 {% endblock %}
+
+{{ travelpost.city }}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 
 
 # Create your models here.
@@ -34,3 +35,7 @@ class TravelPost(models.Model):
     def __str__(self):
         return self.title
 
+class Like(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=CASCADE)
+    travelpost = models.ForeignKey(TravelPost, on_delete=CASCADE)
+    created = models.DateTimeField(auto_now_add=True)

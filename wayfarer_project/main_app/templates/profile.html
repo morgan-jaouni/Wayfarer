@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="m-scene" id="main">
   <div class="m-aside scene_element scene_element--fadein">
     <h1>{{profile.name}}</h1>
@@ -11,6 +12,7 @@
     <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
     <a href="{% url 'travelpost_new' %}" class="button">Add A Post</a>
     {% endif %}
+
     <hr />
     <br/>
     <h4>From {{profile.city}}</h4>
