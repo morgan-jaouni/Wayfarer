@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate
+from django.db.models import Count
 
 # --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login
@@ -33,9 +34,9 @@ def signup(request):
             new_form.save()
             login(request, user)
             mail = send_mail('Welcome to Wayfarer',
-                'Thanks for signing up!',
+                'Thanks for signing up! Please enjoy the app!',
                 'sei98.wayfarer.project@gmail.com',
-                ['hagefer293@x1post.com'])
+                [user.email])
             return redirect('profile', user_id=user.id)
         else:
             error_message = form.non_field_errors
@@ -134,7 +135,7 @@ def travelpost_new(request, city_id):
             new_form.author_id = profile.id
             if city_id:
                 new_form.city_id = city_id
-            new_form.save()
+                new_form.save()
             return redirect('show_city', new_form.city_id)
 
     else:

@@ -21,5 +21,43 @@
     <hr />
     {% endfor %}
   </ul>
+  <ul>
+    {% for post in travelposts %}
+
+    <p>{{ profile.name }} has {{ travelposts.count }} 
+    {% if travelposts.count == 1 %}
+      post 
+    {% else %}
+      posts 
+    {% endif %}
+    for the city of <span><a href="{% url 'show_city' city_id %}" class="btn">{{ post.city.name }}</a></span></p>
+    <hr />
+    {% endfor %}
+  </ul>
+
+  {% comment %} 
+  <ul>
+    {% for post in travelposts %}
+    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
+    <hr />
+    {% endfor %}
+  </ul>
+  <ul>
+    {% for city in cities %}
+      {% for post in travelposts %}
+        {% if post.city_id == city.id %}
+          {{ postnumber++ }}
+        {% endif %}
+      {% endfor %}
+      <p>{{ profile.name }} has {{ postnumber }} 
+      {% if postnumber == 1 %}
+        post 
+      {% else %}
+        posts 
+      {% endif %}
+      for the city of <span><a href="{% url 'show_city' city.id %}" class="btn">{{ city.name }}</a></span></p>
+      <hr />
+    {% endfor %}
+  </ul> {% endcomment %}
 
 {% endblock %}
