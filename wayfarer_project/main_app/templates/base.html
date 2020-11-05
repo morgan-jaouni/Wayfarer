@@ -14,21 +14,24 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <nav class="auth">
-      <a href="{% url 'index' %}">Home</a>
-      {% if user.is_authenticated %}
-      <a href="{% url 'profile' user.id %}" class="btn">Profile</a>
-      <a href="{% url 'logout' %}" class="btn">Logout</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="btn">Login</a>
-      <a href="{% url 'signup' %}" class="btn">Sign Up</a>
-      {% endif %}
-    </nav>
+    <header>
+      <nav class="navbar">
+        <div class="row">
+          <a href="{% url 'index' %}" class="nav-button">Home</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'profile' user.id %}" class="nav-button">Profile</a>
+          <a href="{% url 'logout' %}" class="nav-button">Logout</a>
+          {% else %}
+          <a href="{% url 'login' %}" class="nav-button">Login</a>
+          <a href="{% url 'signup' %}" class="nav-button">Sign Up</a>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
     <main class="container">
       {% block content %} {% endblock %}
       <footer></footer>
     </main>
-   
   </body>
 
 </html>

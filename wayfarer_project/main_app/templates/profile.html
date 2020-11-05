@@ -4,7 +4,7 @@
   <h1>{{profile.name}}</h1>
 
   {% if user.id == profile.user.id %}
-  <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+  <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
   {% endif %}
   
   <hr />
@@ -17,7 +17,7 @@
 
   <ul>
     {% for post in travelposts %}
-    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
+    <a href="{% url 'travelpost_show' post.id %}" class="button">{{ post.title }}</a>
     <hr />
     {% endfor %}
   </ul>
