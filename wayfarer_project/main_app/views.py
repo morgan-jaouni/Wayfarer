@@ -66,22 +66,22 @@ def profile(request, user_id):
 @login_required
 def edit_profile(request, user_id):
     profile = Profile.objects.get(user_id=user_id)
-    user = authenticate(id=profile.user_id)
-    if request.method == 'POST':
-        if user is not None:
-            form = ProfileForm(request.POST, instance = profile)
-            if form.is_valid():
-                profile.image = request.FILES['image']
-                updated_profile=form.save()
+    user = request.user.id=user_id
+    if user:
+        if request.method == 'POST':
+                form = ProfileForm(request.POST, instance = profile)
+                if form.is_valid():
+                    profile.image = request.FILES['image']
+                    updated_profile=form.save()
                 return redirect('profile', updated_profile.user_id)
         else:
-            return redirect('index')
+            form = ProfileForm(instance = profile)
+            context = {
+                'form': form,
+            }
+            return render(request, 'profile/edit.html', context)
     else:
-        form = ProfileForm(instance = profile)
-        context = {
-            'form': form,
-        }
-        return render(request, 'profile/edit.html', context)
+        return redirect('index')
 
 def profile_home(request):
     current_user = request.user
@@ -100,8 +100,8 @@ def travelpost_show(request, travelpost_id):
 def travelpost_edit(request, travelpost_id):
     error_message = ''
     travelpost = TravelPost.objects.get(id=travelpost_id)
-    user = authenticate(id=travelpost.author.user_id)
-    if user is not None:
+    user = request.user.id=travelpost.author.user_id
+    if user:
         if request.method == 'POST':
             form = PostForm(request.POST, instance=travelpost)
             if form.is_valid():
@@ -149,8 +149,8 @@ def travelpost_new(request, city_id):
 @login_required
 def travelpost_delete(request, travelpost_id):
     travelpost = TravelPost.objects.get(id=travelpost_id)
-    user = authenticate(id=travelpost.author.user_id)
-    if user is not None:
+    user = request.user.id=travelpost.author.user_id
+    if user:
         TravelPost.objects.get(id=travelpost_id).delete()
         return redirect('profile_home')
     else:
