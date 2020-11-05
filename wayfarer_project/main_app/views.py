@@ -1,6 +1,6 @@
 from django.http import request, HttpResponse
 from django.template import context
-from main_app.models import City, Profile, TravelPost
+from main_app.models import City, Like, Profile, TravelPost
 from main_app.forms import CityPostForm, PostForm, ProfileForm, SignUpForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
@@ -30,7 +30,8 @@ def signup(request):
             user = form.save()
             new_form = sub_form.save(commit=False)
             new_form.user_id = user.id
-            new_form.image = request.FILES['image']
+            if new_form.image:
+                new_form.image = request.FILES['image']
             new_form.save()
             login(request, user)
             mail = send_mail('Welcome to Wayfarer',
@@ -90,12 +91,32 @@ def profile_home(request):
 
 # --------------------------------------- POSTS
 def travelpost_show(request, travelpost_id):
+    profile = Profile.objects.get(user_id = request.user.id)
     travelpost = TravelPost.objects.get(id=travelpost_id)
+    posts = TravelPost.objects.filter(author_id = profile.id)
+    liked = Like.objects.filter(profile_id=profile.id, travelpost_id=travelpost.id)
+    travelpost.likes +=1
     context = {
         'travelpost': travelpost,
         'travelpost_id': travelpost_id,
+        'liked': liked,
     }
     return render(request, 'travelposts/show.html', context)
+
+def like(request, travelpost_id):
+    profile = Profile.objects.get(user_id = request.user.id)
+    post = TravelPost.objects.get(id=travelpost_id)
+    new, created = Like.objects.get_or_create(profile_id=profile.id, travelpost_id=travelpost_id)
+    if not created:
+        if post.likes > 0:
+            post.likes -= 1
+            post.save()
+        new.delete()
+        return redirect('travelpost_show', travelpost_id)
+    else:
+        post.likes += 1
+        post.save()
+        return redirect('travelpost_show', travelpost_id)
 
 @login_required
 def travelpost_edit(request, travelpost_id):
@@ -123,7 +144,7 @@ def travelpost_edit(request, travelpost_id):
 def travelpost_new(request, city_id):
     error_message = ''
     if request.method == 'POST':
-        if city_id:
+        if city_id > 0:
             form = CityPostForm(request.POST)
         else:
             form = PostForm(request.POST)
@@ -133,13 +154,12 @@ def travelpost_new(request, city_id):
         if form.is_valid():
             new_form = form.save(commit=False)
             new_form.author_id = profile.id
-            if city_id:
+            if city_id > 0:
                 new_form.city_id = city_id
                 new_form.save()
             return redirect('show_city', new_form.city_id)
-
     else:
-        if city_id:
+        if city_id > 0:
             form = CityPostForm()
         else:
             form = PostForm()

@@ -5,6 +5,7 @@
 
   {% if user.id == profile.user.id %}
   <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
+  <a href="{% url 'travelpost_new' 0 %}" class="btn">New Post</a>
   {% endif %}
   
   <hr />
@@ -15,7 +16,7 @@
 <h2>{{profile.join_date}}</h2>
 
 
-  <ul>
+  {% comment %} <ul>
     {% for post in travelposts %}
     <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
     <hr />
@@ -33,7 +34,7 @@
     for the city of <span><a href="{% url 'show_city' city_id %}" class="btn">{{ post.city.name }}</a></span></p>
     <hr />
     {% endfor %}
-  </ul>
+  </ul> {% endcomment %}
 
   {% comment %} 
   <ul>
