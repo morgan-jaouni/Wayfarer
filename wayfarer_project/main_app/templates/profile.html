@@ -9,6 +9,7 @@
     <br/>
     {% if user.id == profile.user.id %}
     <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
+    <a href="{% url 'travelpost_new' %}" class="button">Add A Post</a>
     {% endif %}
     <hr />
     <br/>
