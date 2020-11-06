@@ -30,7 +30,7 @@ def signup(request):
             user = form.save()
             new_form = sub_form.save(commit=False)
             new_form.user_id = user.id
-            if new_form.image:
+            if request.FILES:
                 new_form.image = request.FILES['image']
             new_form.save()
             login(request, user)
@@ -153,6 +153,9 @@ def travelpost_new(request, city_id):
 
         if form.is_valid():
             new_form = form.save(commit=False)
+            if request.FILES:
+                new_form.image = request.FILES['image']
+            new_form.image = request.FILES['image']
             new_form.author_id = profile.id
             if city_id > 0:
                 new_form.city_id = city_id

@@ -16,7 +16,7 @@
   {% endif %}
   </h3>
   <hr />
-  <img src="{{ travelpost.image }}" alt="">
+  <img src="/images/{{travelpost.image}}">
   <p>Likes: {{ travelpost.likes }}</p>
   <p>{{ travelpost.body }}</p>
   {% if user.id == travelpost.author.user_id %}
