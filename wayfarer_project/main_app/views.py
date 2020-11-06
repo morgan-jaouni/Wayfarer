@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate
-from django.db.models import Count
+
 
 # --------------------------------------- AUTH IMPORTS
 from django.contrib.auth import login

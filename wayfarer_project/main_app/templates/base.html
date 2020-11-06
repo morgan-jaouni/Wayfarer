@@ -4,8 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
-    <title></title>
+    <title>Anywhere. Else.</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% comment %} Skeleton CSS {% endcomment %}
@@ -13,12 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/skeleton.css' %}" />
     {% comment %} Main CSS {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    {% comment %} Main CSS {% endcomment %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.min.js"></script>
-    <script defer src="{% static 'scripts/app.js' %}"></script>
-  </head>
     {% comment %} Font Awesome {% endcomment %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  </head>
   <body>
     <header>
       <nav class="navbar">
@@ -35,9 +31,11 @@
       </nav>
     </header>
     <main class="container">
-      {% block content %} {% endblock %}
-      <footer></footer>
+
+      {% block content %}
+      
+      {% endblock %}
+    
     </main>
   </body>
-
 </html>
