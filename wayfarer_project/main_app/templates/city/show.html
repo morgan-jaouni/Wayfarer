@@ -2,7 +2,7 @@
 {% block content %}
 
 <h1>{{ city.name }}</h1>
-<img src="{{ city.image }}" alt="{{city.name}}" />
+<img src="/images/{{ image }}" alt="{{city.name}}" />
 <a href="{% url 'travelpost_new' city.id %}" class="button">New Post</a>
 {% for post in travelposts %}
 <a href="{% url 'travelpost_show' post.id %}">

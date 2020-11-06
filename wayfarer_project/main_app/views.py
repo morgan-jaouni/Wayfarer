@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate
+from django.db.models import Max
 
 
 # --------------------------------------- AUTH IMPORTS
@@ -187,9 +188,15 @@ def travelpost_delete(request, travelpost_id):
 def show_city(request, city_id):
     city = City.objects.get(id=city_id)
     travelposts = TravelPost.objects.filter(city_id=city_id)
+    popular_post = travelposts.order_by('-likes')[0]
+    if popular_post:
+        city_image = popular_post.image
+    else:
+        city_image = city.image
     context = {
         'city': city,
         'travelposts': travelposts,
+        'image': city_image
     }
     return render(request, 'city/show.html', context)
 
