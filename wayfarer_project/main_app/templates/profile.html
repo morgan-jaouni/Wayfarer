@@ -1,30 +1,30 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
-
 <div class="m-scene" id="main">
   <div class="m-aside scene_element scene_element--fadein">
-    <h1>{{profile.name}}</h1>
-    {% if profile.image %}
-    <img class="profile-pic" src="/images/{{profile.image}}" />
+    {% if  profile.image %}
+    <img class = "profile-pic" src="/images/{{profile.image}}">
     {% endif %}
-    <br />
+    <br/>
+    <br/>
+    <h4><i class="far fa-user"></i> {{profile.name}}</h4>
+    <h4><i class="fas fa-map-marker-alt"></i> {{profile.city}}</h4>
+    <h6>Joined {{profile.join_date}}</h6>
     {% if user.id == profile.user.id %}
     <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
     <a href="{% url 'travelpost_new' 0 %}" class="button">Add A Post</a>
     {% endif %}
     <hr />
-    <br />
-    <h4><i class="fas fa-map-marker-alt"></i> {{profile.city}}</h4>
-    <p><i class="far fa-calendar-alt"></i> Joined {{profile.join_date}}</p>
   </div>
-  <div class="m-right-panel m-page scene_element scene_element--fadeinright">
+  <br/>
+  <h4><i class="fas fa-pencil-alt"></i> by {{profile.name}}:</h4>
+    <div class="m-right-panel m-page scene_element scene_element--fadeinright">
     <ul>
       {% for post in travelposts %}
-      <a href="{% url 'travelpost_show' post.id %}" class="button">{{ post.title }}</a>
+      <a href="{% url 'travelpost_show' post.id %}" class="blog-post">{{ post.title }}</a>
       <hr />
       {% endfor %}
     </ul>
   </div>
 </div>
-
 {% endblock %}

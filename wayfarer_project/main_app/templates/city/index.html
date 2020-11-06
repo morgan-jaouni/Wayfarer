@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
-
+<div class="post-page">
 <h1>Anywhere. Else.</h1>
 
 {% for city in cities %}
   <a href="{% url 'show_city' city.id %}">{{ city.name }}</a>
 {% endfor %}
-
+</div>
 {% endblock %}

@@ -145,7 +145,7 @@ def travelpost_new(request, city_id):
     error_message = ''
     if request.method == 'POST':
         if city_id > 0:
-            form = CityPostForm(request.POST)
+            form = CityPostForm(request.POST, request.FILES)
         else:
             form = PostForm(request.POST, request.FILES)
         current_user = request.user
@@ -206,4 +206,3 @@ def index_city(request):
         'cities': cities,
     }
     return render(request, 'city/index.html', context)
-
