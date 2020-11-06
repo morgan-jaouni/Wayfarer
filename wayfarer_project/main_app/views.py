@@ -200,3 +200,10 @@ def show_city(request, city_id):
     }
     return render(request, 'city/show.html', context)
 
+def index_city(request):
+    cities = City.objects.all()
+    context = {
+        'cities': cities,
+    }
+    return render(request, 'city/index.html', context)
+
