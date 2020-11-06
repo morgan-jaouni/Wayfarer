@@ -129,8 +129,6 @@ STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 LOGOUT_REDIRECT_URL = '/'
 
 
-LOGOUT_REDIRECT_URL = '/'
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sei98.wayfarer.project@gmail.com'

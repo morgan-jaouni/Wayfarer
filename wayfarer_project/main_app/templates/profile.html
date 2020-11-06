@@ -10,66 +10,9 @@
     <br/>
     {% if user.id == profile.user.id %}
     <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
-    <a href="{% url 'travelpost_new' %}" class="button">Add A Post</a>
+    <a href="{% url 'travelpost_new' 0 %}" class="button">Add A Post</a>
     {% endif %}
-{% comment %} 
-  {% if user.id == profile.user.id %}
-  <a href="{% url 'edit_profile' user.id %}" class="btn-small">Edit</a>
-  <a href="{% url 'travelpost_new' 0 %}" class="btn">New Post</a>
-  {% endif %}
-  
-  <hr />
-  {% if profile.image %}
-  <img class = "profile-pic" src="/images/{{profile.image}}">
-  {% endif %}
-<h2>{{profile.city}}</h2>
-<h2>{{profile.join_date}}</h2> {% endcomment %}
 
-
-  {% comment %} <ul>
-    {% for post in travelposts %}
-    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
-    <hr />
-    {% endfor %}
-  </ul>
-  <ul>
-    {% for post in travelposts %}
-
-    <p>{{ profile.name }} has {{ travelposts.count }} 
-    {% if travelposts.count == 1 %}
-      post 
-    {% else %}
-      posts 
-    {% endif %}
-    for the city of <span><a href="{% url 'show_city' city_id %}" class="btn">{{ post.city.name }}</a></span></p>
-    <hr />
-    {% endfor %}
-  </ul> {% endcomment %}
-
-  {% comment %} 
-  <ul>
-    {% for post in travelposts %}
-    <a href="{% url 'travelpost_show' post.id %}" class="btn">{{ post.title }}</a>
-    <hr />
-    {% endfor %}
-  </ul>
-  <ul>
-    {% for city in cities %}
-      {% for post in travelposts %}
-        {% if post.city_id == city.id %}
-          {{ postnumber++ }}
-        {% endif %}
-      {% endfor %}
-      <p>{{ profile.name }} has {{ postnumber }} 
-      {% if postnumber == 1 %}
-        post 
-      {% else %}
-        posts 
-      {% endif %}
-      for the city of <span><a href="{% url 'show_city' city.id %}" class="btn">{{ city.name }}</a></span></p>
-      <hr />
-    {% endfor %}
-  </ul> {% endcomment %}
     <hr />
     <br/>
     <h4>From {{profile.city}}</h4>
