@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
-
+<div class="post-page">
 <h1>Edit Post</h1>
 {% if error_message %}
 <p class="red-text">{{ error_message }}</p>
@@ -9,5 +9,5 @@
   {% csrf_token %} {{ form.as_p }}
   <input type="submit" class="button" value="Submit" />
 </form>
-
+</div>
 {% endblock %}
