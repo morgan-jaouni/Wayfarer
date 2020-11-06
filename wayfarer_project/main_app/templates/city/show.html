@@ -2,7 +2,11 @@
 {% block content %}
 
 <h1>{{ city.name }}</h1>
+{% if travelposts %}
 <img src="/images/{{ image }}" alt="{{city.name}}" />
+{% else %}
+<img src="{{ image }}" alt="{{city.name}}" />
+{% endif %}
 <a href="{% url 'travelpost_new' city.id %}" class="button">New Post</a>
 {% for post in travelposts %}
 <a href="{% url 'travelpost_show' post.id %}">
