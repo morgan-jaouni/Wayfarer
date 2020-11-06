@@ -121,7 +121,7 @@ a:hover {
   max-width: 300px;
   max-height: 300px;
   display: inline-block;
-  border-radius: 8px;
+  border-radius: 50%;
   box-shadow: 0 0 10px 0 black;;
 }
 

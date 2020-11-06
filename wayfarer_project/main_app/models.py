@@ -30,7 +30,7 @@ class TravelPost(models.Model):
     likes = models.IntegerField(default=0)
     body = models.TextField()
     title = models.CharField(max_length=200)
-    image = models.URLField()
+    image = models.ImageField(null=True, blank=True, upload_to = '')
 
     def __str__(self):
         return self.title

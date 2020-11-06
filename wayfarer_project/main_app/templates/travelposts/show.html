@@ -10,7 +10,16 @@
   {% if liked %}
   <a href="{% url 'like' travelpost.id %}"><i class="fas fa-heart"></i></a>
   {% else %}
-  <a href="{% url 'like' travelpost.id %}"><i class="far fa-heart"></i></a>
+    <a href="{% url 'like' travelpost.id %}"><i class="far fa-heart"></i></a>
+  {% endif %}
+  </h3>
+  <hr />
+  <img src="/images/{{travelpost.image}}">
+  <p>Likes: {{ travelpost.likes }}</p>
+  <p>{{ travelpost.body }}</p>
+  {% if user.id == travelpost.author.user_id %}
+    <a class="button" href="{% url 'travelpost_edit' travelpost.id %}">Edit Post</a>
+    <a class="button" href="{% url 'travelpost_delete' travelpost.id %}" onclick="return confirm('Are you sure you want to delete post?');">Delete Post</a>
   {% endif %}
 </h3>
 <hr />
