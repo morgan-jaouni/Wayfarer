@@ -20,6 +20,7 @@
       <nav class="navbar">
         <div class="topnav-right">
           <a href="{% url 'index' %}"><img class="nav-button icon" src="{% static 'images/AnywhereElseIcon.png' %}"/></a>
+          <a href="{% url 'index_city' %}" class="nav-button">Cities</a>
           {% if user.is_authenticated %}
           <a href="{% url 'profile' user.id %}" class="nav-button">Profile</a>
           <a href="{% url 'logout' %}" class="nav-button">Logout</a>
