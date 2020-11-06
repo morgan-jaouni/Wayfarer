@@ -71,9 +71,8 @@ def edit_profile(request, user_id):
     user = request.user.id=user_id
     if user:
         if request.method == 'POST':
-                form = ProfileForm(request.POST, instance = profile)
+                form = ProfileForm(request.POST, request.FILES, instance = profile)
                 if form.is_valid():
-                    profile.image = request.FILES['image']
                     updated_profile=form.save()
                 return redirect('profile', updated_profile.user_id)
         else:
@@ -125,9 +124,9 @@ def travelpost_edit(request, travelpost_id):
     user = request.user.id=travelpost.author.user_id
     if user:
         if request.method == 'POST':
-            form = PostForm(request.POST, instance=travelpost)
+            form = PostForm(request.POST, request.FILES, instance=travelpost)
             if form.is_valid():
-                edit_form = form.save()
+                form.save()
                 return redirect('travelpost_show', travelpost_id)
 
 
@@ -147,19 +146,17 @@ def travelpost_new(request, city_id):
         if city_id > 0:
             form = CityPostForm(request.POST)
         else:
-            form = PostForm(request.POST)
+            form = PostForm(request.POST, request.FILES)
         current_user = request.user
         profile = Profile.objects.get(user_id=current_user.id)
 
         if form.is_valid():
             new_form = form.save(commit=False)
-            if request.FILES:
-                new_form.image = request.FILES['image']
             new_form.image = request.FILES['image']
             new_form.author_id = profile.id
             if city_id > 0:
                 new_form.city_id = city_id
-                new_form.save()
+            new_form.save()
             return redirect('show_city', new_form.city_id)
     else:
         if city_id > 0:
