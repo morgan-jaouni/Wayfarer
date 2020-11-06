@@ -30,6 +30,7 @@ urlpatterns = [
 
   # ------------------------------------- CITY ROUTES
   path('cities/<int:city_id>/', views.show_city, name='show_city'),
+
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # handler404 = views.handler404

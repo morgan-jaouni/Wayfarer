@@ -2,7 +2,7 @@
 {% block content %}
   <h1>New Post</h1>
 
-  {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+{% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %} 
 
   <form enctype="multipart/form-data" action="{% url 'travelpost_new' city_id %}" method="POST">
     {% csrf_token %}
