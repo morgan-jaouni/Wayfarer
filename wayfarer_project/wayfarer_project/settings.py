@@ -129,6 +129,12 @@ STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 LOGOUT_REDIRECT_URL = '/'
 
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sei98.wayfarer.project@gmail.com'
+EMAIL_HOST_PASSWORD = '123sei456'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/images/'
