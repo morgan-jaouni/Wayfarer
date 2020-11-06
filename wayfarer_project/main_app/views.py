@@ -35,8 +35,8 @@ def signup(request):
                 new_form.image = request.FILES['image']
             new_form.save()
             login(request, user)
-            mail = send_mail('Welcome to Wayfarer',
-                'Thanks for signing up! Please enjoy the app!',
+            mail = send_mail('Welcome to Anywhere. Else.',
+                'Thanks for signing up! Please enjoy the app! \n \n let\'s go!!!',
                 'sei98.wayfarer.project@gmail.com',
                 [user.email])
             return redirect('profile', user_id=user.id)
