@@ -14,6 +14,8 @@ Technologies Used: Python, Django, PostgreSQL, Pillow, Skeleton, JavaScript
 ##USER STORIES Global
 
 Authorized Users can:
+
+
 -Create Travel Post
 -Edit/Delete Post
 -View other users posts/profiles
