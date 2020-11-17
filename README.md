@@ -7,9 +7,9 @@ The goal of this project was to create an application that allows a user to crea
 Technologies Used: Python, Django, PostgreSQL, Pillow, Skeleton, JavaScript
 
 //FEATURES
--Full CRUD
--Authentication/Authorization
--Mobilization
+*Full CRUD
+*Authentication/Authorization
+*Mobilization
 
 ##USER STORIES Global
 
