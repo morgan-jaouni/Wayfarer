@@ -6,12 +6,12 @@ The goal of this project was to create an application that allows a user to crea
 
 Technologies Used: Python, Django, PostgreSQL, Pillow, Skeleton, JavaScript
 
-#FEATURES
-*Full CRUD
-*Authentication/Authorization
-*Mobilization
+FEATURES
+-Full CRUD
+-Authentication/Authorization
+-Mobilization
 
-#USER STORIES Global
+USER STORIES Global
 
 Authorized Users can:
 
@@ -22,7 +22,7 @@ Authorized Users can:
 -Own a profile page
 
 
-##USER STORIES Home PAGE
+USER STORIES Home PAGE
 
 
 
