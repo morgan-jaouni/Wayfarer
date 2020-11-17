@@ -2,7 +2,7 @@ Anywhere. Else.
 
 The goal of this project was to create an application that allows a user to create profile, view posts of other users, and create posts of their own.
 
-https://protected-ocean-10059.herokuapp.com/
+
 
 Technologies Used: Python, Django, PostgreSQL, Pillow, Skeleton, JavaScript
 
