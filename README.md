@@ -1,3 +1,30 @@
+Anywhere. Else. 
+
+The goal of this project was to create an application that allows a user to create profile, view posts of other users, and create posts of their own.
+
+https://protected-ocean-10059.herokuapp.com/
+
+Technologies Used: Python, Django, PostgreSQL, Pillow, Skeleton, JavaScript
+
+//FEATURES
+-Full CRUD
+-Authentication/Authorization
+-Mobilization
+
+##USER STORIES Global
+
+Authorized Users can:
+-Create Travel Post
+-Edit/Delete Post
+-View other users posts/profiles
+-Own a profile page
+
+
+##USER STORIES Home PAGE
+
+
+
+
 ![](https://files.slack.com/files-pri/T0351JZQ0-F01E3NP7NBT/copy_of_wayfarer_project_erd.png)
 
 
