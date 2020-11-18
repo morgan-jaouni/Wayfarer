@@ -7,12 +7,12 @@
     {% endif %}
     <br/>
     <br/>
+    <h6>Joined {{profile.join_date}}</h6>
+    <a href="{% url 'edit_profile' user.id %}" class="button">Edit Profile</a>
+    <a href="{% url 'travelpost_new' 0 %}" class="button">Add A Post</a>
     <h4><i class="far fa-user"></i> {{profile.name}}</h4>
     <h4><i class="fas fa-map-marker-alt"></i> {{profile.city}}</h4>
-    <h6>Joined {{profile.join_date}}</h6>
     {% if user.id == profile.user.id %}
-    <a href="{% url 'edit_profile' user.id %}" class="button">Edit</a>
-    <a href="{% url 'travelpost_new' 0 %}" class="button">Add A Post</a>
     {% endif %}
     <hr />
   </div>

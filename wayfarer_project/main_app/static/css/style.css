@@ -13,6 +13,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  
 }
 .title {
   margin: 5px;
@@ -117,10 +118,7 @@ img {
   height: 100%;
   margin: auto;
 }
-.post-page {
-  /* display: inline-block; */
-  /* justify-content: center; */
-}
+
 h1 {
   color: #DC7364;
   text-decoration: none;
@@ -156,3 +154,5 @@ p {
   padding: 3px;
   border-radius: 8px;
 }
+
+

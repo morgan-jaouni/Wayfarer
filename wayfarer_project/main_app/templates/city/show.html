@@ -8,10 +8,11 @@
   {% endif %}
   <br>
   <h1>{{ city.name }}</h1>
-  <hr>
   <a href="{% url 'travelpost_new' city.id %}" class="button">New Post</a>
+  <hr>
   {% for post in travelposts %}
   <a href="{% url 'travelpost_show' post.id %}">
+
     <h3>{{ post.title }}</h3>
   </a>
   <p>{{ post.date }}</p>
@@ -20,6 +21,7 @@
     <a href="{% url 'travelpost_show' post.id %}" class="view_more" display=""
       >View More</a>
   </p>
+
   {% endfor %}
 
   <script>
