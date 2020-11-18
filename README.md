@@ -55,3 +55,6 @@ The goal of this project was to create an application that allows a user to crea
 
 ##### User can create a new post with title and caption
 ![Screen Shot 2020-10-30 at 5 11 44 PM](https://media.git.generalassemb.ly/user/31017/files/0a68e400-1ad3-11eb-898b-dcad9384cb7c)
+
+
+###### Collaborators: Morgan Jaouni, Katie Hermalik, Josua Sanford, Brendan Howe
