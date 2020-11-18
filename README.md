@@ -4,7 +4,7 @@ The goal of this project was to create an application that allows a user to crea
 
 
 
-# Technologies Used: 
+## Technologies Used: 
 * Python
 * Django
 * PostgreSQL
@@ -12,14 +12,14 @@ The goal of this project was to create an application that allows a user to crea
 * Skeleton
 * JavaScript
 
-# FEATURES
+### FEATURES
 * Full CRUD
 * Authentication/Authorization
 * Mobilization
 
 # USER STORIES Global
 
-# Authorized Users can:
+### Authorized Users can:
 
 
 * Create Travel post
@@ -31,7 +31,7 @@ The goal of this project was to create an application that allows a user to crea
 * Own a profile page
 
 
-#Wireframe
+### Wireframes
 
 
 ![](https://files.slack.com/files-pri/T0351JZQ0-F01E3NP7NBT/copy_of_wayfarer_project_erd.png)
