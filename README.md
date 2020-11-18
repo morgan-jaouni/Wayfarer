@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-#Anywhere. E‹lse. 
-=======
-# Anywhere. Else. 
->>>>>>> f264c40ab2cc29c260e074eb62c470d8fddbdfab
+
+# Anywhere. Else.
 
 The goal of this project was to create an application that allows a user to create a profile, view posts of other users, and create posts of their own. 
 
