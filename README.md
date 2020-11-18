@@ -48,7 +48,7 @@ The goal of this project was to create an application that allows a user to crea
 ![Screen Shot 2020-10-30 at 5 10 23 PM](https://media.git.generalassemb.ly/user/31017/files/de4d6300-1ad2-11eb-95c0-3559a595661d)
 
 
-
+##### User can view an index of cities with posts by other users in a specific city - chronological order 
 ![Screen Shot 2020-10-30 at 5 11 05 PM](https://media.git.generalassemb.ly/user/31017/files/f329f680-1ad2-11eb-8d5a-9e7ac44ddfb5)
 
 
