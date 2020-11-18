@@ -29,6 +29,7 @@ The goal of this project was to create an application that allows a user to crea
 * View other users profile
 * Like posts by other users
 * Own a profile page
+* Image upload with pillow technology
 
 
 ### Wireframes
