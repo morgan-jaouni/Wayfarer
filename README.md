@@ -22,7 +22,7 @@ The goal of this project was to create an application that allows a user to crea
 ### Authorized Users can:
 
 
-* Create Travel post
+* Create Travel post with photo, title, caption
 * Edit Travel post
 * Delete Travel post
 * View other users posts
@@ -48,10 +48,10 @@ The goal of this project was to create an application that allows a user to crea
 ![Screen Shot 2020-10-30 at 5 10 23 PM](https://media.git.generalassemb.ly/user/31017/files/de4d6300-1ad2-11eb-95c0-3559a595661d)
 
 
-##### User can view an index of cities with posts by other users in a specific city - chronological order 
+##### User can view an index of cities with posts by other users in a specific city - chronological order. User can like each post. Like count will show on post.
 ![Screen Shot 2020-10-30 at 5 11 05 PM](https://media.git.generalassemb.ly/user/31017/files/f329f680-1ad2-11eb-8d5a-9e7ac44ddfb5)
 
 
 
-
+##### User can create a new post with title and caption
 ![Screen Shot 2020-10-30 at 5 11 44 PM](https://media.git.generalassemb.ly/user/31017/files/0a68e400-1ad3-11eb-898b-dcad9384cb7c)
