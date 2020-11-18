@@ -1,6 +1,6 @@
 # Anywhere. Else. 
 
-The goal of this project was to create an application that allows a user to create profile, view posts of other users, and create posts of their own.
+The goal of this project was to create an application that allows a user to create a profile, view posts of other users, and create posts of their own. (Instagram mimick)
 
 
 
