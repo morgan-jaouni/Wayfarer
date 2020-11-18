@@ -13,6 +13,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  
 }
 .title {
   margin: 5px;
@@ -34,6 +35,7 @@ body {
   max-width: 100vw;
   margin-top: 50px;
   padding: 30px;
+
 }
 header {
   background-image: url('https://i.picsum.photos/id/1056/3988/2720.jpg?hmac=qX6hO_75zxeYI7C-1TOspJ0_bRDbYInBwYeoy_z_h08');
@@ -114,10 +116,7 @@ img {
   height: 100%;
   margin: auto;
 }
-.post-page {
-  /* display: inline-block; */
-  /* justify-content: center; */
-}
+
 h1 {
   color: #F0D5C0;
   text-decoration: none;
@@ -126,7 +125,7 @@ h3, h4, h5 {
   color: #DC7364;
   text-decoration: none;
   margin:0;
-  font-size: 5px;
+  font-size: 15px;
 }
 h6 {
   color: #DC7364;

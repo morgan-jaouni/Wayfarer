@@ -1,4 +1,4 @@
-#Anywhere. Else. 
+#Anywhere. E‹lse. 
 
 The goal of this project was to create an application that allows a user to create profile, view posts of other users, and create posts of their own.
 
