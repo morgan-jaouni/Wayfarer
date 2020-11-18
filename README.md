@@ -33,17 +33,17 @@ The goal of this project was to create an application that allows a user to crea
 
 ### Wireframes
 
-##### A user can sign up or sign in from the home route.
+
 ![](https://files.slack.com/files-pri/T0351JZQ0-F01E3NP7NBT/copy_of_wayfarer_project_erd.png)
 
 
 
 
-##### After clicking sign up or sign in, the user will be redirected to a form to enter their information. 
+##### A user can sign up or sign in from the home route.
 ![Screen Shot 2020-10-30 at 5 09 20 PM](https://media.git.generalassemb.ly/user/31017/files/b8c05980-1ad2-11eb-9f18-fe293de93cd5)
 
 
-
+##### After clicking sign up or sign in, the user will be redirected to a form to enter their information. 
 ![Screen Shot 2020-10-30 at 5 10 23 PM](https://media.git.generalassemb.ly/user/31017/files/de4d6300-1ad2-11eb-95c0-3559a595661d)
 
 
