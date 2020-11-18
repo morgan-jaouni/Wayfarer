@@ -1,31 +1,34 @@
-#Anywhere. Else. 
+# Anywhere. Else. 
 
 The goal of this project was to create an application that allows a user to create profile, view posts of other users, and create posts of their own.
 
 
 
-#Technologies Used: 
-*Python
-*Django
-*PostgreSQL
-*Pillow
-*Skeleton
-*JavaScript
+# Technologies Used: 
+* Python
+* Django
+* PostgreSQL
+* Pillow
+* Skeleton
+* JavaScript
 
-#FEATURES
--Full CRUD
--Authentication/Authorization
--Mobilization
+# FEATURES
+* Full CRUD
+* Authentication/Authorization
+* Mobilization
 
-#USER STORIES Global
+# USER STORIES Global
 
-#Authorized Users can:
+# Authorized Users can:
 
 
-*Create Travel Post
-*Edit/Delete Post
-*View other users posts/profiles
-*Own a profile page
+* Create Travel post
+* Edit Travel post
+* Delete Travel post
+* View other users posts
+* View other users profile
+* Like posts by other users
+* Own a profile page
 
 
 #Wireframe
