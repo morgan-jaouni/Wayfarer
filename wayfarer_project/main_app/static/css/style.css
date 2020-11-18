@@ -34,6 +34,7 @@ body {
   max-width: 100vw;
   margin-top: 50px;
   padding: 30px;
+ 
 }
 header {
   background-image: url('https://i.picsum.photos/id/1056/3988/2720.jpg?hmac=qX6hO_75zxeYI7C-1TOspJ0_bRDbYInBwYeoy_z_h08');
@@ -61,7 +62,7 @@ a {
   top: 5px;
 }
 a:hover {
-  color: lightskyblue
+  color: lightskyblue;
 }
 .auth-form {
   margin: 5px;
@@ -70,7 +71,7 @@ a:hover {
 }
 .button, button, input[type="submit"], input[type="reset"], input[type="button"]{
   background-color: rgba(17, 16, 16, 0.4);
-  color: #F0D5C0;
+  color: #DC7364;
   width: 140px;
 }
 .navbar {
@@ -97,6 +98,8 @@ img {
   max-width: 300px;
   margin: 0 auto;
   box-shadow: none;
+ 
+ 
 }
 .icon {
   max-width: 35px;
@@ -119,12 +122,14 @@ img {
   /* justify-content: center; */
 }
 h1 {
-  color: #F0D5C0;
+  color: #DC7364;
   text-decoration: none;
 }
 h3, h4, h5 {
-  color: #F0D5C0;
+  color: #DC7364;
   text-decoration: none;
+  font-size:25px;
+  margin: 0;
 }
 h6 {
   color: #DC7364;
@@ -136,7 +141,7 @@ p {
 }
 .link {
   font-size: 18px;
-  color: #F0D5C0;
+  color: #DC7364;
 }
 .link:hover {
   color: #DC7364;
@@ -145,7 +150,7 @@ p {
 /* ERROR MESSAGE */
 .errorlist {
   color: rgb(172, 16, 16);
-  background: #F0D5C0;
+  background: #DC7364;
   font-size: 16px;
   text-decoration: none;
   padding: 3px;
