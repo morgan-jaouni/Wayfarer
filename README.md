@@ -4,7 +4,7 @@ The goal of this project was to create an application that allows a user to crea
 
 
 
-## Technologies Used: 
+## Technologies: 
 * Python
 * Django
 * PostgreSQL
