@@ -33,7 +33,7 @@ The goal of this project was to create an application that allows a user to crea
 * Image upload with pillow technology
 
 
-### Wireframes
+#### Wireframes
 
 
 ![](https://files.slack.com/files-pri/T0351JZQ0-F01E3NP7NBT/copy_of_wayfarer_project_erd.png)
