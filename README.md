@@ -3,7 +3,7 @@
 
 The goal of this project was to create an application that allows a user to create a profile, view posts of other users, and create posts of their own. 
 
-### Heroku Link: https://anywhere-else-app.herokuapp.com
+#### Heroku Link: https://anywhere-else-app.herokuapp.com
 
 ## Technologies: 
 * Python
